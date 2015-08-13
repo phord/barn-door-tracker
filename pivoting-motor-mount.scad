@@ -1,8 +1,8 @@
 well_size = 43;
 well_depth = 12;
-pivot_width = 10 ;
+pivot_width = 12 ;
 
-wall_width=8;
+wall_width=3;
 floor_depth=4;
 
 block_size = well_size + wall_width*2;
@@ -11,6 +11,7 @@ block_height = well_depth + floor_depth ;
 
 smooth_bar_diameter = 8.4;
 threaded_rod_diameter = 8.6;
+dRod = smooth_bar_diameter ;
 
 end_size = 7.5;
 clamp_size = 10;
@@ -36,15 +37,15 @@ difference(){
 	translate(v=[-well_size/2,-well_size/2,-(block_height-well_depth)]) cube(size = [well_size,well_size,well_depth+1]);
 
 	// Nema 17
-	rotate ([0,0,  45]) translate([20,0,0]) cube(size = [9,3.2,block_height+4], center = true);
-	rotate ([0,0, -45]) translate([20,0,0]) cube(size = [9,3.2,block_height+4], center = true);
-	rotate ([0,0, 135]) translate([20,0,0]) cube(size = [9,3.2,block_height+4], center = true);
-	rotate ([0,0,-135]) translate([20,0,0]) cube(size = [9,3.2,block_height+4], center = true);
+	rotate ([0,0,  45]) translate([21,0,0]) cube(size = [9,3.2,block_height+4], center = true);
+	rotate ([0,0, -45]) translate([21,0,0]) cube(size = [9,3.2,block_height+4], center = true);
+	rotate ([0,0, 135]) translate([21,0,0]) cube(size = [9,3.2,block_height+4], center = true);
+	rotate ([0,0,-135]) translate([21,0,0]) cube(size = [9,3.2,block_height+4], center = true);
 	translate(v=[0,0,-block_height/2-1]) cylinder(r=23/2,h=block_height+4);
 
 	// Pivot rod
-	translate(v=[-block_size/2-pivot_width-1,0,0]) rotate(a=[0,90,0]) rotate([0, 0, 22.5]) cylinder(h = pivot_width+1+wall_width/2 , r=threaded_rod_diameter/2 / cos(22.5), $fn=8);
-	translate(v=[ block_size/2-wall_width/2 ,0,0]) rotate(a=[0,90,0]) rotate([0, 0, 22.5]) cylinder(h = pivot_width+1+wall_width/2 , r=threaded_rod_diameter/2 / cos(22.5), $fn=8);
+	translate(v=[-block_size/2-pivot_width-1,0,0]) rotate(a=[0,90,0]) rotate([0, 0, 22.5]) cylinder(h = pivot_width+1+wall_width/2 , r=dRod/2 / cos(22.5), $fn=8);
+	translate(v=[ block_size/2-wall_width/2 ,0,0]) rotate(a=[0,90,0]) rotate([0, 0, 22.5]) cylinder(h = pivot_width+1+wall_width/2 , r=dRod/2 / cos(22.5), $fn=8);
 }
 }
 
